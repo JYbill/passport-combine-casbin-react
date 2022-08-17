@@ -2,11 +2,13 @@ import "./App.scss";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/Login";
 import NotFound from "./pages/404/NotFound";
-import Redirect from "./pages/components/redirect/Redirect";
+import Redirect from "./components/project/redirect/Redirect";
+import Header from "./components/common/header/Header";
 
 export default function App() {
   return (
-    <div className="App">
+    <>
+      <Header />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Redirect />} />
@@ -17,6 +19,6 @@ export default function App() {
           <Route path="*" element={<Navigate to="/404" />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
