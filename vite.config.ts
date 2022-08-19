@@ -34,7 +34,17 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         "@": resolve("./src"),
-        images: resolve("./src/images"),
+        images: resolve("./src/assets/images"),
+        scss: resolve("./src/assets/scss"),
+      },
+    },
+
+    // style预处理
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "scss/variable.scss";', // 添加公共样式
+        },
       },
     },
   };

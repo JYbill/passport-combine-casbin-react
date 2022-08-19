@@ -4,22 +4,35 @@
  * @desc：404页面
  * @date: 2022-08-17 15:53:28
  */
-import { Empty } from "@douyinfe/semi-ui";
+import { Empty, Button } from "@douyinfe/semi-ui";
 import {
-  IllustrationConstruction,
-  IllustrationConstructionDark,
+  IllustrationNotFound,
+  IllustrationNotFoundDark,
 } from "@douyinfe/semi-illustrations";
+import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {
+  // init
+  const navigate = useNavigate();
+
+  // component.
+  const NotFoundTipComponent = (
+    <div>
+      <p>未找到您需要的页面</p>
+      <Button theme="solid" type="tertiary" onClick={() => navigate("/")}>
+        返回首页
+      </Button>
+    </div>
+  );
   return (
     <div className="NotFound">
       <Empty
-        image={<IllustrationConstruction style={{ width: 150, height: 150 }} />}
+        image={<IllustrationNotFound style={{ width: 150, height: 150 }} />}
         darkModeImage={
-          <IllustrationConstructionDark style={{ width: 150, height: 150 }} />
+          <IllustrationNotFoundDark style={{ width: 150, height: 150 }} />
         }
-        title={"功能建设中"}
-        description="当前功能暂未开放，敬请期待。"
+        title={"页面404"}
+        description={NotFoundTipComponent}
       />
     </div>
   );
