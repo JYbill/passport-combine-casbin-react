@@ -24,6 +24,10 @@ export default function App() {
       component: lazy(() => import('./pages/login/Login')),
     },
     {
+      path: '/register',
+      component: lazy(() => import('./pages/register/Register')),
+    },
+    {
       path: '/404',
       component: lazy(() => import('./pages/404/NotFound')),
     },

@@ -1,0 +1,28 @@
+.Login {
+  width: 320px;
+  margin: 5px auto;
+
+  h1 {
+    text-align: center;
+  }
+
+  .semi-button {
+    width: 100%;
+    margin-top: 10px;
+    background-color: $success-green;
+
+    &:hover {
+      background-color: $success-green-hover !important;
+    }
+  }
+
+  // 注册卡片
+  .register-card {
+    margin-top: 10px;
+
+    :global .semi-card-body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}
