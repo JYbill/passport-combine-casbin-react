@@ -1,28 +1,55 @@
 .Register {
-  display: flex;
-  margin-top: 10px;
+  width: 90%;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin: 10px auto;
 
   // 注册表单
-  .register-form {
+  .form-context {
     flex: 1;
-    width: 50%;
-    margin-right: 5px;
-    margin-left: 10px;
+    margin-right: 10px;
 
-    :global .semi-form {
+    h1 {
+      text-align: center;
+    }
+  }
+
+  :global {
+    // semi样式覆盖
+    .semi-card-body {
+      position: relative;
+      display: flex;
+      flex-wrap: nowrap;
+      display: flex;
+      align-items: center;
+    }
+
+    .semi-form {
       width: 80%;
       max-width: 400px;
       min-width: 200px;
       margin: 0 auto;
     }
+
+    // 注册、重制
+    .operation-btn {
+      display: flex;
+      justify-content: space-between;
+
+      .semi-button {
+        width: 45%;
+        margin-right: 5px;
+      }
+    }
   }
 
+  // 右侧动图
   img {
-    width: 50%;
-    height: 100%;
+    width: 100px;
+    height: 400px;
     flex: 1;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 6px;
     margin-right: 10px;
   }
 }

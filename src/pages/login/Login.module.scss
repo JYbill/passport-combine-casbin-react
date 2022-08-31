@@ -16,6 +16,28 @@
     }
   }
 
+  // 分割线
+  .semi-divider {
+    font-size: 12px;
+    color: rgba(var(--semi-grey-3), 1);
+  }
+
+  // github 登陆按钮
+  .github-login-btn {
+    width: 100%;
+    height: 40px;
+    background-color: #41454d;
+
+    &:hover {
+      background-color: #5b606c !important;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
   // 注册卡片
   .register-card {
     margin-top: 10px;

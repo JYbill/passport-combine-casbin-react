@@ -2,65 +2,65 @@ import './App.scss';
 import { BrowserRouter, Navigate, Route, Routes, To } from 'react-router-dom';
 import Header from './components/common/header/Header';
 import React, { LazyExoticComponent, lazy, Suspense } from 'react';
+import { useRoutes } from 'react-router-dom';
+import NotFound from './pages/404/NotFound';
+import GithubPage from './pages/github/Github';
 
 export default function App() {
   // init.
   document.body.setAttribute('theme-mode', 'dark');
 
-  // 路由映射表
-  interface RouteType {
-    path: string;
-    component?: LazyExoticComponent<React.FC> | null;
-    to?: To;
-    children?: RouteType[];
-  }
-  const routers: RouteType[] = [
+  // lazy components
+  const LazyRedirect = lazy(() => import('./components/project/redirect/Redirect'));
+  const LazyLogin = lazy(() => import('./pages/login/Login'));
+  const LazyRegister = lazy(() => import('./pages/register/Register'));
+
+  const elements = useRoutes([
     {
       path: '/',
-      component: lazy(() => import('./components/project/redirect/Redirect')),
+      element: (
+        <Suspense>
+          <LazyRedirect />
+        </Suspense>
+      ),
     },
     {
       path: '/login',
-      component: lazy(() => import('./pages/login/Login')),
+      element: (
+        <Suspense>
+          <LazyLogin />
+        </Suspense>
+      ),
     },
     {
       path: '/register',
-      component: lazy(() => import('./pages/register/Register')),
+      element: (
+        <Suspense>
+          <LazyRegister />
+        </Suspense>
+      ),
+    },
+    {
+      path: '/login',
+      element: (
+        <Suspense>
+          <LazyRegister />
+        </Suspense>
+      ),
+    },
+    {
+      path: '/github',
+      element: <GithubPage />,
     },
     {
       path: '/404',
-      component: lazy(() => import('./pages/404/NotFound')),
+      element: <NotFound />,
     },
     {
       path: '*',
-      to: '/404',
+      element: <Navigate to="/404" />,
     },
-  ];
+  ]);
 
-  /**
-   * 根据RouteType判断当前为页面 or 重定向并返回对应的元素
-   * @param item
-   * @returns
-   */
-  function getElementByRouter(item: RouteType) {
-    if (item.component) {
-      return (
-        <Suspense>
-          <item.component />
-        </Suspense>
-      );
-    }
-    return <Navigate to={item.to as To} />;
-  }
-
-  return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        {routers.map((item) => (
-          <Route key={item.path} path={item.path} element={getElementByRouter(item)} />
-        ))}
-      </Routes>
-    </BrowserRouter>
-  );
+  return elements;
 }

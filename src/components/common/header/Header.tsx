@@ -64,9 +64,15 @@ export default function Header() {
       },
     });
   };
+
+  // logo click
+  const toIndex = () => {
+    navigate('/');
+  };
+
   return (
     <div className={HeaderStyle.Header}>
-      <img src={logoImg} />
+      <img src={logoImg} onClick={toIndex} />
       <div className={HeaderStyle.operation}>
         <Popover showArrow arrowPointAtCenter content={popoverContent}>
           <Button className={HeaderStyle['semi-button']} icon={iconComponent} aria-label="颜色主题" onClick={changeColorTheme} />
