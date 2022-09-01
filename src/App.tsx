@@ -5,6 +5,8 @@ import React, { LazyExoticComponent, lazy, Suspense } from 'react';
 import { useRoutes } from 'react-router-dom';
 import NotFound from './pages/404/NotFound';
 import GithubPage from './pages/github/Github';
+import { Skeleton, Spin } from '@douyinfe/semi-ui';
+import { IconWifi } from '@douyinfe/semi-icons';
 
 export default function App() {
   // init.
@@ -15,11 +17,14 @@ export default function App() {
   const LazyLogin = lazy(() => import('./pages/login/Login'));
   const LazyRegister = lazy(() => import('./pages/register/Register'));
 
+  // loading
+  const Loading = () => <Spin size="large" style={{ position: 'absolute', left: '50%', top: '50%' }} />;
+
   const elements = useRoutes([
     {
       path: '/',
       element: (
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <LazyRedirect />
         </Suspense>
       ),
@@ -27,7 +32,7 @@ export default function App() {
     {
       path: '/login',
       element: (
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <LazyLogin />
         </Suspense>
       ),
@@ -35,7 +40,7 @@ export default function App() {
     {
       path: '/register',
       element: (
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <LazyRegister />
         </Suspense>
       ),
@@ -43,7 +48,7 @@ export default function App() {
     {
       path: '/login',
       element: (
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <LazyRegister />
         </Suspense>
       ),

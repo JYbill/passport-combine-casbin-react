@@ -1,48 +1,21 @@
-# React Template（⚡️）
+# passport-combine-casbin-react
 
-⚡️ A minimal React Vite starter template.
+- dir path
 
-## Feature
-
-- ⚡️ Fast - Build tools based on vite.
-- 👻 Small - Based on the smallest runnable build.
-- 💄 Prettier - Integrated Prettier to help you format the code.
-- ✅ Safety - Https is enabled by default.
-- 😎 Reliable - Integrated eslint and commitlint.
-- 🤖 Intelligent - Integrated renovate to help you maintain the dependent version.
-
-## Preview
-
-[![qekup8.png](https://s1.ax1x.com/2022/03/20/qekup8.png)](https://imgtu.com/i/qekup8)
-
-## Getting Started
-
-```bash
-npx degit 0x219/template-vite-react myapp
-
-cd myapp
+```ts
+├── App.scss
+├── App.tsx
+├── api // axios 接口目录
+├── assets
+│   ├── images // 静态图片
+│   └── scss // scss公共样式抽取，变量...
+├── components
+│   ├── common // 通用公共组件(可以与ui框架耦合)
+│   └── project // 项目耦合
+├── config
+│   └── index.config.ts // 配置文件
+├── pages // 页面
+└── utils // 工具方法
 ```
 
-### Prerequisites
-
-- `npm` and `pnpm` should be installed.
-- `git` should be installed (recommended v2.4.11 or higher)
-
-### Available scripts
-
-#### `pnpm dev`
-
-Runs the app in development mode.
-Open https://localhost:3000 to view it in the browser.
-
-The page will automatically reload if you make changes to the code.
-You will see the build errors and lint warnings in the console.
-
-#### `pnpm build`
-
-Builds the app for production to the `dist` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.
-
-Your app is ready to be deployed.
+- TODO: 管理首页

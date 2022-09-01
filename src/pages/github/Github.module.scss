@@ -1,0 +1,16 @@
+.githubPage {
+  // loading 容器
+  .loading-container {
+    width: 800px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(var(--semi-orange-6), 1);
+    background-image: url('@/assets/images/work.png');
+    :global .semi-spin-wrapper {
+      color: inherit;
+    }
+  }
+}

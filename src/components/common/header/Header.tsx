@@ -6,7 +6,7 @@
  */
 import { Button, Popover, Tag } from '@douyinfe/semi-ui';
 import logoImg from 'images/logo.png';
-import { IconSun, IconMoon } from '@douyinfe/semi-icons';
+import { IconSun, IconMoon, IconGithubLogo } from '@douyinfe/semi-icons';
 import HeaderStyle from './Header.module.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -70,16 +70,28 @@ export default function Header() {
     navigate('/');
   };
 
+  // open window to github
+  const toGithub = () => {
+    window.open('https://github.com/JYbill/passport-combine-casbin', '_blank');
+  };
+
   return (
     <div className={HeaderStyle.Header}>
-      <img src={logoImg} onClick={toIndex} />
+      <Popover showArrow arrowPointAtCenter content="🥷！别点！">
+        <img src={logoImg} onClick={toIndex} />
+      </Popover>
       <div className={HeaderStyle.operation}>
         <Popover showArrow arrowPointAtCenter content={popoverContent}>
           <Button className={HeaderStyle['semi-button']} icon={iconComponent} aria-label="颜色主题" onClick={changeColorTheme} />
         </Popover>
-        <Button theme="solid" type="secondary" style={{ marginRight: 10 }} onClick={() => navigate('/login')}>
-          🥸 登陆
-        </Button>
+        <Popover showArrow arrowPointAtCenter content="Github地址">
+          <Button icon={<IconGithubLogo size="extra-large" />} type="tertiary" style={{ marginRight: 20 }} onClick={toGithub} />
+        </Popover>
+        <Popover showArrow arrowPointAtCenter content="去登陆">
+          <Button theme="solid" type="secondary" style={{ marginRight: 10 }} onClick={() => navigate('/login')}>
+            🥸 登陆
+          </Button>
+        </Popover>
       </div>
     </div>
   );

@@ -13,20 +13,25 @@ class Request {
       (res: AxiosRequestConfig) => {
         return res;
       },
-      (err: Error) => err
+      (err: Error) => {
+        console.error(err);
+        return err;
+      }
     );
 
     // 响应拦截器
     this.instance.interceptors.response.use(
       (res: AxiosResponse) => {
+        if (!res.data['success']) {
+          console.error('axios 响应错误', res.data);
+        }
         return res.data;
       },
-      (err: Error) => err
+      (err: Error) => {
+        console.error(err);
+        return err;
+      }
     );
-  }
-
-  request(config: AxiosRequestConfig) {
-    return this.instance.request(config);
   }
 }
 
