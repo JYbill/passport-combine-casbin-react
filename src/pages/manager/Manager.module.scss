@@ -1,0 +1,11 @@
+.manager {
+  display: flex;
+  flex-wrap: nowrap;
+  height: calc(100% - $header-height);
+
+  .nav {
+    width: 260px;
+    height: 100%;
+    flex-shrink: 0;
+  }
+}

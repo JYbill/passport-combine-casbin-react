@@ -52,8 +52,6 @@ const Header: React.FC<TPageProps> = (props) => {
 
   // components
   const ShowLoginBtn = () => {
-    console.log(loginContext);
-
     // 登陆
     if (loginContext) {
       return (

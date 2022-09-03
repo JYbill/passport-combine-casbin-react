@@ -1,8 +1,9 @@
 import { Spin } from '@douyinfe/semi-ui';
 import React, { lazy, Suspense } from 'react';
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, Outlet, useRoutes } from 'react-router-dom';
 import GithubPage from '@/pages/github/Github';
 import NotFound from '@/pages/404/NotFound';
+import Home from '@/pages/manager/pages/home/Home';
 
 export type TPageProps = {
   updateLoginStateFunc: (token?: string) => void;
@@ -33,6 +34,7 @@ const ProjectRouter: React.FC<TPageProps> = (props) => {
           <LazyManager />
         </Suspense>
       ),
+      children: [{ path: '', element: <Home /> }],
     },
     {
       path: '/login',

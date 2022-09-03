@@ -1,12 +1,13 @@
 .Header {
   width: 100%;
-  height: 60px;
+  height: $header-height;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   align-items: center;
   justify-items: center;
   border-bottom: 1px solid $semi-border-color;
+  box-sizing: border-box;
 
   img {
     justify-self: flex-start;
