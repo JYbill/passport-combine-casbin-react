@@ -2,13 +2,15 @@
   width: 100%;
   height: 60px;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   align-items: center;
   justify-items: center;
   border-bottom: 1px solid $semi-border-color;
 
   img {
+    justify-self: flex-start;
+    margin-left: 20px;
     width: 50px;
     grid-column: 1 / 1;
     border-radius: 5px;
@@ -16,7 +18,7 @@
   }
 
   .operation {
-    grid-column: 6 / 6;
+    grid-column: 4 / 4;
 
     .semi-button {
       margin-right: 20px;

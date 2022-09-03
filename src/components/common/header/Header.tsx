@@ -4,15 +4,18 @@
  * @desc：Header给公共组件
  * @date: 2022-08-17 16:27:02
  */
-import { Button, Popover, Tag } from '@douyinfe/semi-ui';
+import { Button, Popover } from '@douyinfe/semi-ui';
 import logoImg from 'images/logo.png';
 import { IconSun, IconMoon, IconGithubLogo } from '@douyinfe/semi-icons';
 import HeaderStyle from './Header.module.scss';
-import { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoginStateContext from '@/context/login.context';
+import { TPageProps } from '@/router/index.router';
 
-export default function Header() {
+const Header: React.FC<TPageProps> = (props) => {
   // init
+  const { updateLoginStateFunc } = props;
   const navigate = useNavigate();
   const body = document.body;
   const iconStyle = {
@@ -33,13 +36,11 @@ export default function Header() {
     }
     return <p>切换到暗色模式</p>;
   });
+  // 登陆状态
+  const loginContext = useContext(LoginStateContext);
 
   // common util
   // 当前为暗黑主题
-  interface IisDarkThemeFuncArg {
-    success: VoidFunction;
-    fail: VoidFunction;
-  }
   function isDarkTheme({ success, fail }: { success: VoidFunction; fail: VoidFunction }) {
     if (body.hasAttribute('theme-mode')) {
       success();
@@ -49,6 +50,38 @@ export default function Header() {
     return;
   }
 
+  // components
+  const ShowLoginBtn = () => {
+    console.log(loginContext);
+
+    // 登陆
+    if (loginContext) {
+      return (
+        <Popover showArrow arrowPointAtCenter content="去退出">
+          <Button
+            theme="solid"
+            type="tertiary"
+            style={{ marginRight: 10 }}
+            onClick={() => {
+              updateLoginStateFunc();
+              navigate('/login');
+            }}
+          >
+            🥺 退出
+          </Button>
+        </Popover>
+      );
+    }
+    return (
+      <Popover showArrow arrowPointAtCenter content="去登录">
+        <Button theme="solid" type="secondary" style={{ marginRight: 10 }} onClick={() => navigate('/login')}>
+          🥸 登录
+        </Button>
+      </Popover>
+    );
+  };
+
+  // methods
   // btn onclick 修改颜色状态方法
   const changeColorTheme = () => {
     isDarkTheme({
@@ -87,12 +120,12 @@ export default function Header() {
         <Popover showArrow arrowPointAtCenter content="Github地址">
           <Button icon={<IconGithubLogo size="extra-large" />} type="tertiary" style={{ marginRight: 20 }} onClick={toGithub} />
         </Popover>
-        <Popover showArrow arrowPointAtCenter content="去登陆">
-          <Button theme="solid" type="secondary" style={{ marginRight: 10 }} onClick={() => navigate('/login')}>
-            🥸 登陆
-          </Button>
-        </Popover>
+
+        {/*  登陆按钮 */}
+        <ShowLoginBtn />
       </div>
     </div>
   );
-}
+};
+
+export default Header;

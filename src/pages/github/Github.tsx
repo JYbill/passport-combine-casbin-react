@@ -1,12 +1,14 @@
 import AuthApi from '@/api/auth.api';
+import { TPageProps } from '@/router/index.router';
 import { toastWarn } from '@/utils/toast.util';
-import { Spin, Toast } from '@douyinfe/semi-ui';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { Spin } from '@douyinfe/semi-ui';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import GithubPageStyle from './Github.module.scss';
 
-const githubCodePage = () => {
+const githubCodePage: React.FC<TPageProps> = (props) => {
   // init.
+  const updateLoginStateFunc = props.updateLoginStateFunc;
   const [params, setParams] = useSearchParams();
   const nav = useNavigate();
   const authApi = new AuthApi();
@@ -26,7 +28,7 @@ const githubCodePage = () => {
         toastWarn();
         return;
       }
-      localStorage.setItem('token', ret['data']['auth']);
+      updateLoginStateFunc(ret['data']['auth']);
       nav('/');
     }
     httpInit();
