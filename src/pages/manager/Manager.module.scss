@@ -4,8 +4,34 @@
   height: calc(100% - $header-height);
 
   .nav {
-    width: 260px;
     height: 100%;
     flex-shrink: 0;
+
+    :global {
+      // nav 头部
+      .semi-navigation-header {
+        padding-top: 10px;
+        padding-bottom: 0;
+        justify-content: center;
+        transition: transform 0.4s;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+
+      .semi-navigation-list-wrapper {
+        padding-bottom: 15px;
+        // nav li标签
+        li {
+          .semi-navigation-item-icon {
+            transition: transform 0.3s;
+          }
+
+          &:hover .semi-navigation-item-icon {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
   }
 }

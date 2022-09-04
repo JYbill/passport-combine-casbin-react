@@ -4,6 +4,10 @@ import { Navigate, Outlet, useRoutes } from 'react-router-dom';
 import GithubPage from '@/pages/github/Github';
 import NotFound from '@/pages/404/NotFound';
 import Home from '@/pages/manager/pages/home/Home';
+import Users from '@/pages/manager/pages/users/Users';
+import Role from '@/pages/manager/pages/role/Role';
+import Permission from '@/pages/manager/pages/permission/Permission';
+import PermissionGroup from '@/pages/manager/pages/permissionGroup/PermissionGroup';
 
 export type TPageProps = {
   updateLoginStateFunc: (token?: string) => void;
@@ -28,13 +32,20 @@ const ProjectRouter: React.FC<TPageProps> = (props) => {
       ),
     },
     {
-      path: '/manager',
+      path: '/manager/',
       element: (
         <Suspense fallback={<Loading />}>
           <LazyManager />
         </Suspense>
       ),
-      children: [{ path: '', element: <Home /> }],
+      children: [
+        { path: '', element: <Navigate to={'home'} /> },
+        { path: 'home', element: <Home /> },
+        { path: 'users', element: <Users /> },
+        { path: 'role', element: <Role /> },
+        { path: 'permission', element: <Permission /> },
+        { path: 'permissionGroup', element: <PermissionGroup /> },
+      ],
     },
     {
       path: '/login',

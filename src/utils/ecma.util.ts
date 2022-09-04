@@ -4,7 +4,20 @@
  * @desc 常用字符串、数字工具类、常用正则表达式
  * @dependence
  */
+
+/**
+ * 原始类型
+ */
 type TPrimitive = number | string | boolean;
+
+/**
+ * jwt 解析后的类型
+ */
+type TJwtParseObject = {
+  type: Record<string, string>;
+  payload: Record<string, TPrimitive>;
+};
+
 export class EcmaUtil {
   // 正则：匹配所有
   static readonly MathAllRxp = /.*.*/gi;
@@ -178,5 +191,27 @@ export class EcmaUtil {
       .toString()
       .slice(2, length + 2);
     return numberStr.startsWith('0') ? '1' + numberStr.slice(1) : numberStr;
+  }
+
+  /**
+   * 解析jwt并返回解析结果
+   * @param token 完整token数据
+   * @param authHeader Auth: Barber字段
+   * @returns
+   */
+  static parseJWT(token: string, authHeader: string): TJwtParseObject {
+    let jwtString: string = token;
+    // 存在authHeader即去除authHeader
+    if (jwtString.includes(authHeader)) {
+      jwtString = token.replace(authHeader, '');
+    }
+    const jwtArr = jwtString.split('.');
+    const type = window.atob(jwtArr[0]);
+    const payload = window.atob(jwtArr[1]);
+
+    return {
+      type: JSON.parse(type) as Record<string, string>,
+      payload: JSON.parse(payload) as Record<string, TPrimitive>,
+    };
   }
 }
