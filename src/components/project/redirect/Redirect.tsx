@@ -8,8 +8,8 @@ import { Navigate } from 'react-router-dom';
 
 export default function RedirectByStatus() {
   const flag = 'token';
-  const login = 'login';
-  const index = 'manager';
+  const login = '/login';
+  const index = '/manager/';
 
   const token = localStorage.getItem(flag);
   const path = token ? index : login;

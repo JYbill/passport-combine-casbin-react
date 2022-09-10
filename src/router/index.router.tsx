@@ -8,13 +8,13 @@ import Users from '@/pages/manager/pages/users/Users';
 import Role from '@/pages/manager/pages/role/Role';
 import Permission from '@/pages/manager/pages/permission/Permission';
 import PermissionGroup from '@/pages/manager/pages/permissionGroup/PermissionGroup';
+import Redirect from '@/components/project/redirect/Redirect';
 
 export type TPageProps = {
   updateLoginStateFunc: (token?: string) => void;
 };
 const ProjectRouter: React.FC<TPageProps> = (props) => {
   // lazy components
-  const LazyRedirect = lazy(() => import('@/components/project/redirect/Redirect'));
   const LazyLogin = lazy(() => import('@/pages/login/Login'));
   const LazyRegister = lazy(() => import('@/pages/register/Register'));
   const LazyManager = lazy(() => import('@/pages/manager/Manager'));
@@ -25,11 +25,7 @@ const ProjectRouter: React.FC<TPageProps> = (props) => {
   return useRoutes([
     {
       path: '/',
-      element: (
-        <Suspense fallback={<Loading />}>
-          <LazyRedirect />
-        </Suspense>
-      ),
+      element: <Redirect />,
     },
     {
       path: '/manager/',

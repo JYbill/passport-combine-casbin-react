@@ -9,6 +9,7 @@
   border-bottom: 1px solid $semi-border-color;
   box-sizing: border-box;
 
+  // logo
   img {
     justify-self: flex-start;
     margin-left: 20px;
@@ -18,11 +19,23 @@
     cursor: pointer;
   }
 
+  // header 操作组件
   .operation {
     grid-column: 4 / 4;
 
     .semi-button {
       margin-right: 20px;
+    }
+
+    :global {
+      // 头像
+      .semi-avatar {
+        object-fit: contain;
+        margin-right: 20px;
+        img {
+          margin-left: 0;
+        }
+      }
     }
   }
 }

@@ -8,12 +8,12 @@
 /**
  * 原始类型
  */
-type TPrimitive = number | string | boolean;
+export type TPrimitive = number | string | boolean;
 
 /**
  * jwt 解析后的类型
  */
-type TJwtParseObject = {
+export type TJwtParseObject = {
   type: Record<string, string>;
   payload: Record<string, TPrimitive>;
 };
@@ -200,6 +200,9 @@ export class EcmaUtil {
    * @returns
    */
   static parseJWT(token: string, authHeader: string): TJwtParseObject {
+    if (token.length <= 1) {
+      throw new Error('token is null.');
+    }
     let jwtString: string = token;
     // 存在authHeader即去除authHeader
     if (jwtString.includes(authHeader)) {

@@ -9,12 +9,14 @@ const Home: React.FC = () => {
   // hooks
   const loginStateContext = useContext(LoginStateContext);
   const tokenParseObject = EcmaUtil.parseJWT(loginStateContext as string, 'Bearer ');
-  console.log(tokenParseObject['type']);
-  console.log(tokenParseObject['payload']);
+  // console.log(tokenParseObject['type']);
+  // console.log(tokenParseObject['payload']);
   return (
     <Card className={HomeStyle['home']}>
       <img src={HomeImg} alt="" />
-      <p>欢迎进入casbin系统！</p>
+      <p>
+        欢迎`{tokenParseObject['payload']['nickname']}`通过`{tokenParseObject['payload']['type']}`进入casbin系统！
+      </p>
     </Card>
   );
 };
